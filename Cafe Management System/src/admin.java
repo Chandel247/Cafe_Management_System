@@ -9,7 +9,7 @@ public class admin extends Employee {
     //to check whether the login is of admin
     public void check_identity(String name, String password){
         try{
-            File file =new File("Employee.txt");
+            File file =new File("Files\\Employee.txt");
             Scanner sc=new Scanner(file);
             while(sc.hasNextLine()){
                 String line=sc.nextLine();
@@ -40,7 +40,7 @@ public class admin extends Employee {
         String serial_code=serial_Num.serial_genrator();
         System.out.println("The serial number for the product is: "+serial_code);
         try {
-            FileWriter fw = new FileWriter("menu.txt", true);
+            FileWriter fw = new FileWriter("Files\\menu.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(item + "   " + price + "   " + quantity + "    "+ serial_code);
             bw.newLine();
@@ -56,7 +56,7 @@ public class admin extends Employee {
 
     //to add a new employee
     public void add_emplyee(String name, String password){
-        File file = new File("Employee.txt");
+        File file = new File("Files\\Employee.txt");
         try{
             FileWriter fw=new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(fw);

@@ -8,7 +8,7 @@ public class Employee {
     //to check the identity of the employee
     public void check_identity(String name, String password){
         try{
-            File file =new File("Employee.txt");
+            File file =new File("Files\\Employee.txt");
             Scanner sc=new Scanner(file);
             while(sc.hasNextLine()){
                 String line=sc.nextLine();
@@ -45,7 +45,7 @@ public class Employee {
 
     public void ordering(){
         menu_reader();
-        
+
     }
 
     
