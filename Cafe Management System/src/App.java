@@ -1,3 +1,12 @@
+import java.io.*;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        
+    }
+}
+
+
 //Admin account class with permission to change the menu and the quantity of the items
 //User account with only permission to order something from the menu
 //Different files for different users
@@ -10,15 +19,3 @@
 //Admin can see the placed orders of the users
 //Admin can see the amount of money earned
 //Admin can add discounts to the items
-
-class cafe_admin{
-    String name;
-    String password;
-    
-}
-
-public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-    }
-}
