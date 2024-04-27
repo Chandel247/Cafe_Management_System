@@ -7,12 +7,12 @@ public class admin {
     boolean is_admin;
 
     //to check whether the login is of admin
-    public boolean check_admin(String name, String password) {
-        if (this.name.equals(name) && this.password.equals(password) && this.is_admin) {
-            return true;
+        public boolean check_admin(String name, String password) {
+           if (this.name.equals(name) && this.password.equals(password) && this.is_admin) {
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
 
     //to change the menu
     public void change_menu() {
