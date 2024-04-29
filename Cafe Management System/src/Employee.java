@@ -126,4 +126,31 @@ public class Employee {
             }
         }
     }
+
+    public void print_bill(){
+        admin ad=new admin();
+        try{
+            File file=new File("Files\\Orders.txt");
+            Scanner reader=new Scanner(file);
+            String last_order="";
+            while(reader.hasNextLine()){
+                last_order=reader.nextLine();
+            }
+            String[] arr=last_order.split("   ");
+            System.out.println("---------------------------------------------------------------------------");
+            System.out.println("-----------------------Thank you for ordering!-----------------------------");
+            System.out.println("Name: "+arr[0]);
+            System.out.println("Phone number: "+arr[1]);
+            System.out.println("Item: "+arr[2]);
+            System.out.println("Quantity: "+arr[3]);
+            ad.check_for_discount(arr[4]);
+            System.out.println("-----------------------Please visit again!---------------------------------");
+            System.out.println("---------------------------------------------------------------------------");
+            reader.close();
+        }
+        catch(IOException e){
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+    }
 }

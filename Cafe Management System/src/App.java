@@ -1,7 +1,45 @@
-
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        Employee emp=new Employee();
+        admin ad=new admin();
+        Scanner input=new Scanner(System.in);
+
+        String choice;
+        System.out.println("Are you an admin or a user?");
+        choice=input.nextLine();
+        if (choice.equals("admin")){
+            System.out.println("Enter your name: ");
+            String name=input.nextLine();
+            System.out.println("Enter your password: ");
+            String password=input.nextLine();
+            ad.check_identity(name, password);
+            System.out.println("Do you want to change the menu or add a new employee?");
+            String choice1=input.nextLine();
+            if (choice1.equals("change the menu")){
+                ad.change_menu();
+            }
+            else if (choice1.equals("add a new employee")){
+                System.out.println("Enter the name of the employee: ");
+                String name1=input.nextLine();
+                System.out.println("Enter the password of the employee: ");
+                String password1=input.nextLine();
+                ad.add_emplyee(name1, password1);
+            }
+        }
+        else if (choice.equals("user")){
+            System.out.println("Enter your name: ");
+            String name=input.nextLine();
+            System.out.println("Enter your password: ");
+            String password=input.nextLine();
+            emp.check_identity(name, password);
+            emp.checking_for_new_customers();
+            emp.print_bill();
+        
+        }
+
+        input.close();
         
     }
 }

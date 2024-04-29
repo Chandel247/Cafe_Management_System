@@ -132,25 +132,15 @@ public class admin extends Employee {
     }
 
     //to print the bill for the latest order made
-    public void print_bill(){
-        try{
-            File file=new File("Files\\Orders.txt");
-            Scanner reader=new Scanner(file);
-            String last_order="";
-            while(reader.hasNextLine()){
-                last_order=reader.nextLine();
-            }
-            String[] arr=last_order.split("   ");
-            System.out.println("Name: "+arr[0]);
-            System.out.println("Phone number: "+arr[1]);
-            System.out.println("Item: "+arr[2]);
-            System.out.println("Quantity: "+arr[3]);
-            System.out.println("Total price: "+arr[4]);
-            reader.close();
+    public void check_for_discount(String price){
+        
+        if (Float.parseFloat(price)>1000){
+            System.out.println("Congratulations! You have earned a discount of 10%");
+            float discount=(Float.parseFloat(price)*10)/100;
+            System.out.println("Total price after discount: "+(Float.parseFloat(price)-discount));
         }
-        catch(IOException e){
-            System.out.println("An error occurred");
-            e.printStackTrace();
+        else{
+            System.out.println("Total price: "+price);
         }
     }
 }
