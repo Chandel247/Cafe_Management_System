@@ -71,6 +71,86 @@ public class admin extends Employee {
         }
     }
     
+    //to update quantity of an item
+    public void update_quantity(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the serial number of the item you want to update: ");
+        String serial_num=sc.nextLine();
+        System.out.println("Enter the new quantity of the item: ");
+        int quantity=sc.nextInt();
+        try{
+            File file=new File("Files\\menu.txt");
+            Scanner reader=new Scanner(file);
+            String file_content="";
+            while(reader.hasNextLine()){
+                String item=reader.nextLine();
+                String[] arr=item.split("   ");
+                if(arr[3].equals(serial_num)){
+                    arr[2]=Integer.toString(quantity);
+                }
+                file_content+=arr[0]+"   "+arr[1]+"   "+arr[2]+"   "+arr[3]+"\n";
+            }
+            FileWriter fw=new FileWriter(file);
+            BufferedWriter bw=new BufferedWriter(fw);
+            bw.write(file_content);
+            bw.close();
+            fw.close();
+            reader.close();
+            sc.close();
+        }
+        catch(IOException e){
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+    }
 
+    //to remove an employee
+    public void remove_employee(String name){
+        try{
+            File file=new File("Files\\Employee.txt");
+            Scanner reader=new Scanner(file);
+            String file_content="";
+            while(reader.hasNextLine()){
+                String line=reader.nextLine();
+                String[] arr=line.split("   ");
+                if(arr[0].equals(name)){
+                    continue;
+                }
+                file_content+=line+"\n";
+            }
+            FileWriter fw=new FileWriter(file);
+            BufferedWriter bw=new BufferedWriter(fw);
+            bw.write(file_content);
+            bw.close();
+            fw.close();
+            reader.close();
+        }
+        catch(IOException e){
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+    }
 
+    //to print the bill for the latest order made
+    public void print_bill(){
+        try{
+            File file=new File("Files\\Orders.txt");
+            Scanner reader=new Scanner(file);
+            String last_order="";
+            while(reader.hasNextLine()){
+                last_order=reader.nextLine();
+            }
+            String[] arr=last_order.split("   ");
+            System.out.println("Name: "+arr[0]);
+            System.out.println("Phone number: "+arr[1]);
+            System.out.println("Item: "+arr[2]);
+            System.out.println("Quantity: "+arr[3]);
+            System.out.println("Total price: "+arr[4]);
+            reader.close();
+        }
+        catch(IOException e){
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+    }
 }
