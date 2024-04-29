@@ -58,6 +58,9 @@ public class Employee {
                     System.out.println("---------------------------------------------------------------------------");
                     System.out.println("---------------------------------------------------------------------------");
                     System.out.println("Welcome back!"+ arr[0]);
+                    System.out.println("---------------------------------------------------------------------------");
+                    System.out.println("---------------------------------------------------------------------------");
+                    ordering(arr[0], p_num);
                 }
                 else{
                     FileWriter fw=new FileWriter(file, true);
@@ -67,6 +70,7 @@ public class Employee {
                     bw.write(name + "   " + p_num);
                     bw.close();
                     fw.close();
+                    ordering(name, p_num);
                 }
             }
             reader.close();
