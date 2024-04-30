@@ -8,7 +8,7 @@ public class Employee {
     //to check the identity of the employee
     public boolean check_identity(String name, String password){
         try{
-            File file =new File("Files\\Employee.txt");
+            File file =new File("Files\\Employees.txt");
             Scanner sc=new Scanner(file);
             while(sc.hasNextLine()){
                 String line=sc.nextLine();

@@ -8,9 +8,7 @@ public class admin extends Employee {
 
     //to check whether the login is of admin
     public boolean check_identity(String name, String password){
-        try{
-            File file =new File("Files\\Employees.txt");
-            Scanner sc=new Scanner(file);
+        try(Scanner sc=new Scanner(new File("Files\\Employees.txt"))){
             while(sc.hasNextLine()){
                 String line=sc.nextLine();
                 String[] arr=line.split("   ");
