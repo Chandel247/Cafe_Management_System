@@ -8,11 +8,11 @@ public class admin extends Employee {
 
     //to check whether the login is of admin
     public boolean check_identity(String name, String password){
-        try(Scanner sc=new Scanner(new File("Files\\Employees.txt"))){
+        try(Scanner sc=new Scanner(new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/Employees.txt"))){
             while(sc.hasNextLine()){
                 String line=sc.nextLine();
-                String[] arr=line.split("   ");
-                if(arr[0].equals(name) && arr[1].equals(password) && arr[2]=="true"){
+                String[] arr=line.split("    ");
+                if(arr[0].equals(name) && arr[1].equals(password) && arr[2].equals("true")){
                     return true;
                 }
                 else{
@@ -41,7 +41,7 @@ public class admin extends Employee {
         String serial_code=serial_Num.serial_genrator();
         System.out.println("The serial number for the product is: "+serial_code);
         try {
-            FileWriter fw = new FileWriter("Files\\menu.txt", true);
+            FileWriter fw = new FileWriter("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/menu.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(item + "   " + price + "   " + quantity + "    "+ serial_code);
             bw.newLine();
@@ -57,7 +57,7 @@ public class admin extends Employee {
 
     //to add a new employee
     public void add_emplyee(String name, String password){
-        File file = new File("Files\\Employees.txt");
+        File file = new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/Employees.txt");
         try{
             FileWriter fw=new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -80,7 +80,7 @@ public class admin extends Employee {
         System.out.println("Enter the new quantity of the item: ");
         int quantity=sc.nextInt();
         try{
-            File file=new File("Files\\menu.txt");
+            File file=new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/menu.txt");
             Scanner reader=new Scanner(file);
             String file_content="";
             while(reader.hasNextLine()){
@@ -108,7 +108,7 @@ public class admin extends Employee {
     //to remove an employee
     public void remove_employee(String name){
         try{
-            File file=new File("Files\\Employees.txt");
+            File file=new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/Employees.txt");
             Scanner reader=new Scanner(file);
             String file_content="";
             while(reader.hasNextLine()){

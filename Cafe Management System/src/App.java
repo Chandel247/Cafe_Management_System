@@ -19,7 +19,7 @@ public class App {
                 String name=input.nextLine();
                 System.out.println("Enter your password: ");
                 String password=input.nextLine();
-                if(ad.check_identity(name, password)){
+                if(ad.check_identity(name, password)==true){
                     logged_in=true;
                     logged_in_as="admin";
                 }
@@ -49,13 +49,25 @@ public class App {
                 String password1=input.nextLine();
                 ad.add_emplyee(name1, password1);
             }
-            else if (choice1.equals("order something fot the customer")){
-                ad.checking_for_new_customers();
+            else if (choice1.equals("order for the customer")){
+                String name;
+                String phone_num;
+                System.out.println("Enter the name of the customer: ");
+                name=input.nextLine();
+                System.out.println("Enter the phone number of the customer: ");
+                phone_num=input.nextLine();
+                ad.ordering(name, phone_num);
                 ad.print_bill();
             }
         }
         else if(logged_in_as.equals("employee")){
-            emp.checking_for_new_customers();
+            String name;
+            String phone_num;
+            System.out.println("Enter the name of the customer: ");
+            name=input.nextLine();
+            System.out.println("Enter the phone number of the customer: ");
+            phone_num=input.nextLine();
+            emp.ordering(name, phone_num);
             emp.print_bill();
         }
             

@@ -7,16 +7,13 @@ public class Employee {
 
     //to check the identity of the employee
     public boolean check_identity(String name, String password){
-        try{
-            File file =new File("Files\\Employees.txt");
-            Scanner sc=new Scanner(file);
+        try(Scanner sc=new Scanner(new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/Employees.txt"))){
             while(sc.hasNextLine()){
                 String line=sc.nextLine();
-                String[] arr=line.split("   ");
+                String[] arr=line.split("    ");
                 if(arr[0].equals(name) && arr[1].equals(password)){
                     return true;
                 }
-                sc.close();
             }
         }
         catch(FileNotFoundException e){
@@ -29,7 +26,7 @@ public class Employee {
     //to print the menu
     public void menu_reader(){
         try{
-            File file = new File("Files\\menu.txt");
+            File file = new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/menu.txt");
             Scanner sc=new Scanner(file);
             while(sc.hasNextLine()){
                 String item=sc.nextLine();
@@ -43,45 +40,7 @@ public class Employee {
         }
     }
 
-    //for the customer to order through employee
-    public void checking_for_new_customers(){
-        Scanner input= new Scanner(System.in);
-        System.out.println("What is your mobile number: ");
-        long p_num = Long.parseLong(input.nextLine());
-        try {
-            File file = new File("Files\\Customers.txt");
-            Scanner reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-                String item = reader.nextLine();
-                String[] arr = item.split("   ");
-                if (Long.parseLong(arr[1]) == p_num) {
-                    System.out.println("---------------------------------------------------------------------------");
-                    System.out.println("---------------------------------------------------------------------------");
-                    System.out.println("Welcome back!"+ arr[0]);
-                    System.out.println("---------------------------------------------------------------------------");
-                    System.out.println("---------------------------------------------------------------------------");
-                    ordering(arr[0], p_num);
-                }
-                else{
-                    FileWriter fw=new FileWriter(file, true);
-                    BufferedWriter bw=new BufferedWriter(fw);
-                    System.out.print("Please enter your name: ");
-                    String name=input.nextLine();
-                    bw.write(name + "   " + p_num);
-                    bw.close();
-                    fw.close();
-                    ordering(name, p_num);
-                }
-            }
-            reader.close();
-        } catch(IOException e){
-            System.out.println("An error occurred");
-            e.printStackTrace();
-        }
-        input.close();
-    }
-
-    public void ordering(String name, long phone_num){
+    public void ordering(String name, String phone_num){
         menu_reader();
         boolean countine_order=true;
         while(countine_order){
@@ -91,7 +50,7 @@ public class Employee {
             System.out.println("Enter the quantity of the item you want to order: ");
             int quantity=input.nextInt();
             try{
-                File file=new File("Files\\menu.txt");
+                File file=new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/menu.txt");
                 Scanner reader=new Scanner(file);
                 while(reader.hasNextLine()){
                     String item=reader.nextLine();
@@ -104,9 +63,9 @@ public class Employee {
                         }
                         int total_price=price*quantity;
                         System.out.println("The total price is: "+total_price);
-                        FileWriter fw=new FileWriter("Files\\Orders.txt", true);
+                        FileWriter fw=new FileWriter("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/Orders.txt", true);
                         BufferedWriter bw=new BufferedWriter(fw);
-                        bw.write(name + "   " + phone_num + "   " + arr[0] + "   " + quantity + "   " + total_price);
+                        bw.write(name + "    " + phone_num + "    " + arr[0] + "    " + quantity + "    " + total_price);
                         bw.newLine();
                         bw.close();
                         fw.close();
@@ -130,13 +89,13 @@ public class Employee {
     public void print_bill(){
         admin ad=new admin();
         try{
-            File file=new File("Files\\Orders.txt");
+            File file=new File("/Users/shivpratapsinghchandel/git/Cafe_Management_System/Cafe Management System/src/Files/Orders.txt");
             Scanner reader=new Scanner(file);
             String last_order="";
             while(reader.hasNextLine()){
                 last_order=reader.nextLine();
             }
-            String[] arr=last_order.split("   ");
+            String[] arr=last_order.split("    ");
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("-----------------------Thank you for ordering!-----------------------------");
             System.out.println("Name: "+arr[0]);
