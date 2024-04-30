@@ -7,24 +7,27 @@ public class admin extends Employee {
     boolean is_admin;
 
     //to check whether the login is of admin
-    public void check_identity(String name, String password){
+    public boolean check_identity(String name, String password){
         try{
-            File file =new File("Files\\Employee.txt");
+            File file =new File("Files\\Employees.txt");
             Scanner sc=new Scanner(file);
             while(sc.hasNextLine()){
                 String line=sc.nextLine();
                 String[] arr=line.split("   ");
                 if(arr[0].equals(name) && arr[1].equals(password) && arr[2]=="true"){
-                    System.out.println("Login successful");
-                    return;
+                    return true;
                 }
-                sc.close();
+                else{
+                    return false;
+                }
             }
+            sc.close();
         }
         catch(FileNotFoundException e){
             System.out.println("An error occured");
             e.printStackTrace();
         }
+        return false;
     }
 
     //to change the menu
@@ -56,7 +59,7 @@ public class admin extends Employee {
 
     //to add a new employee
     public void add_emplyee(String name, String password){
-        File file = new File("Files\\Employee.txt");
+        File file = new File("Files\\Employees.txt");
         try{
             FileWriter fw=new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -107,7 +110,7 @@ public class admin extends Employee {
     //to remove an employee
     public void remove_employee(String name){
         try{
-            File file=new File("Files\\Employee.txt");
+            File file=new File("Files\\Employees.txt");
             Scanner reader=new Scanner(file);
             String file_content="";
             while(reader.hasNextLine()){

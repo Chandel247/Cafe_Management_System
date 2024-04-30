@@ -6,7 +6,7 @@ public class Employee {
     String password;
 
     //to check the identity of the employee
-    public void check_identity(String name, String password){
+    public boolean check_identity(String name, String password){
         try{
             File file =new File("Files\\Employee.txt");
             Scanner sc=new Scanner(file);
@@ -14,8 +14,7 @@ public class Employee {
                 String line=sc.nextLine();
                 String[] arr=line.split("   ");
                 if(arr[0].equals(name) && arr[1].equals(password)){
-                    System.out.println("Login successful");
-                    return;
+                    return true;
                 }
                 sc.close();
             }
@@ -24,6 +23,7 @@ public class Employee {
             System.out.println("An error occured");
             e.printStackTrace();
         }
+        return false;
     }
 
     //to print the menu
